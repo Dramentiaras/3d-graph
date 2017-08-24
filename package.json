@@ -1,0 +1,15 @@
+{
+  "name": "3d-graph",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/Dramentiaras/3d-graph.git"
+  },
+  "author": "Martin Jirlow",
+  "license": "SEE LICENSE IN LICENSE.md"
+}
