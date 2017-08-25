@@ -43703,6 +43703,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _main = __webpack_require__(485);
+
+var _main2 = _interopRequireDefault(_main);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43721,9 +43725,15 @@ var GraphViewport = function (_React$Component) {
     }
 
     _createClass(GraphViewport, [{
-        key: "render",
+        key: 'render',
         value: function render() {
-            return _react2.default.createElement("canvas", { id: "webgl_canvas" });
+            return _react2.default.createElement('canvas', { id: 'webgl_canvas' });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+
+            (0, _main2.default)('webgl_canvas');
         }
     }]);
 
@@ -43731,6 +43741,64 @@ var GraphViewport = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = GraphViewport;
+
+/***/ }),
+/* 485 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = start;
+
+var _core = __webpack_require__(486);
+
+var render = _interopRequireWildcard(_core);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function start(canvasId) {
+
+    render.init(canvasId);
+}
+
+/***/ }),
+/* 486 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.init = init;
+
+var canvas;
+var gl;
+
+function init(canvasid) {
+
+    canvas = document.getElementById(canvasid);
+
+    try {
+        gl = canvas.getContext("experimental-webgl", {
+            alpha: false
+        });
+    } catch (e) {
+        console.log("an error occured while initializing webgl.");
+        console.log(e);
+    }
+
+    if (!gl) {
+        alert("could not initialize webgl.");
+    }
+
+    gl.clearColor(0.1, 0.1, 0.1, 1.0);
+}
 
 /***/ })
 /******/ ]);
