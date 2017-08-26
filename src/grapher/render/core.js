@@ -22,3 +22,9 @@ export function init(canvasid) {
 
     gl.clearColor(0.1, 0.1, 0.1, 1.0);
 }
+
+export function render() {
+
+}
+
+export gl;
