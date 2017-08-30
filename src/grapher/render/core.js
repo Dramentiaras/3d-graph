@@ -1,4 +1,6 @@
-import Camera from './camera.js';
+import Camera from './camera';
+import { Model } from './object/model';
+import getPrograms from './shader/program';
 
 var canvas;
 var gl;
@@ -39,9 +41,11 @@ export function init(canvasid) {
         alert("Could not initialize webgl.");
     }
 
-    gl.clearColor(0.2, 0.2, 0.2, 1.0);
+    gl.clearColor(0.1, 0.1, 0.1, 1.0);
+    getPrograms();
 
     currentCamera = new Camera();
+    tick();
 }
 
 export function render() {
@@ -58,6 +62,11 @@ export function render() {
     })
 
     gl.disable(gl.DEPTH_TEST);
+}
+
+function tick() {
+    requestAnimationFrame(tick);
+    render();
 }
 
 export function addModel(model) {
