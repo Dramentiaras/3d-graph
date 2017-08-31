@@ -1,5 +1,5 @@
 import Camera from './camera';
-import { Model } from './object/model';
+import { Axis } from './object/lib/axis';
 import getPrograms from './shader/program';
 
 var canvas;
@@ -10,6 +10,8 @@ var viewWidth;
 var viewHeight;
 
 var models = [];
+
+//TODO create VAO
 
 function updateViewport() {
     if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
@@ -45,6 +47,8 @@ export function init(canvasid) {
     getPrograms();
 
     currentCamera = new Camera();
+
+    addModel(new Axis());
     tick();
 }
 

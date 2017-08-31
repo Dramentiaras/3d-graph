@@ -1,4 +1,5 @@
 import { gl } from '../core';
+import { Shader } from './shader';
 
 //Import shader sources
 import simple from './lib/simple';
@@ -23,11 +24,11 @@ const Uniforms = [
 
 export class Program {
 
-    constructor (vertexShader, fragmentShader) {
+    constructor (vertexShaderSrc, fragmentShaderSrc) {
 
         this.id = gl.createProgram();
 
-        this.shader = { vertex: vertexShader, fragment: fragmentShader };
+        this.shader = { vertex: new Shader(vertexShaderSrc, gl.VERTEX_SHADER), fragment: new Shader(fragmentShaderSrc, gl.FRAGMENT_SHADER) };
 
         gl.attachShader(this.id, this.shader.vertex.id);
         gl.attachShader(this.id, this.shader.fragment.id);
@@ -45,10 +46,15 @@ export class Program {
 
     bindAttribLocations () {
 
+        var that = this;
         Object.keys(Attributes).forEach(function(attribute) {
             var index = Attributes[attribute];
-            gl.bindAttribLocation(this.id, index, AttribNames[index]);
+            gl.bindAttribLocation(that.id, index, AttribNames[index]);
         });
+    }
+
+    use() {
+        gl.useProgram(this.id);
     }
 
     findUniformLocations () {
@@ -70,7 +76,7 @@ export class Program {
 }
 
 var programs;
-export default function programs() {
+export default function getPrograms() {
 
     if (!programs) {
 
