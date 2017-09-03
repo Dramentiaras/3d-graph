@@ -1,9 +1,5 @@
 import Camera from './camera';
-<<<<<<< HEAD
-import { Model } from './object/model';
-=======
 import { Axis } from './object/lib/axis';
->>>>>>> 5b3bad1861c7736917637ab94e9327beeca74754
 import getPrograms from './shader/program';
 
 var canvas;
@@ -51,11 +47,8 @@ export function init(canvasid) {
     getPrograms();
 
     currentCamera = new Camera();
-<<<<<<< HEAD
-=======
 
     addModel(new Axis());
->>>>>>> 5b3bad1861c7736917637ab94e9327beeca74754
     tick();
 }
 
