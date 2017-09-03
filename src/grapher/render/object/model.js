@@ -1,6 +1,6 @@
-import { Mesh } from './mesh.js';
-import { gl } from '../core.js';
-import { mat4 } from '../../../lib/glm.js';
+import { Mesh } from './mesh';
+import { gl } from '../core';
+import { mat4 } from '../../../lib/glm';
 
 export class Model {
 

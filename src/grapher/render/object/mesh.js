@@ -9,10 +9,6 @@ export class Mesh {
     }
 
     addVertex(pos, color, normal, uv) {
-        assert(pos.length === 3);
-        assert(color.length === 4);
-        assert(normal.length === 3);
-        assert(uv.length === 2);
 
         this.positions.push(pos);
         this.colors.push(color);

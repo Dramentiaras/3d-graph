@@ -1,4 +1,8 @@
 import { gl } from '../core';
+<<<<<<< HEAD
+=======
+import { Shader } from './shader';
+>>>>>>> 5b3bad1861c7736917637ab94e9327beeca74754
 
 //Import shader sources
 import simple from './lib/simple';
@@ -23,11 +27,19 @@ const Uniforms = [
 
 export class Program {
 
+<<<<<<< HEAD
     constructor (vertexShader, fragmentShader) {
 
         this.id = gl.createProgram();
 
         this.shader = { vertex: vertexShader, fragment: fragmentShader };
+=======
+    constructor (vertexShaderSrc, fragmentShaderSrc) {
+
+        this.id = gl.createProgram();
+
+        this.shader = { vertex: new Shader(vertexShaderSrc, gl.VERTEX_SHADER), fragment: new Shader(fragmentShaderSrc, gl.FRAGMENT_SHADER) };
+>>>>>>> 5b3bad1861c7736917637ab94e9327beeca74754
 
         gl.attachShader(this.id, this.shader.vertex.id);
         gl.attachShader(this.id, this.shader.fragment.id);
@@ -45,12 +57,26 @@ export class Program {
 
     bindAttribLocations () {
 
+<<<<<<< HEAD
         Object.keys(Attributes).forEach(function(attribute) {
             var index = Attributes[attribute];
             gl.bindAttribLocation(this.id, index, AttribNames[index]);
         });
     }
 
+=======
+        var that = this;
+        Object.keys(Attributes).forEach(function(attribute) {
+            var index = Attributes[attribute];
+            gl.bindAttribLocation(that.id, index, AttribNames[index]);
+        });
+    }
+
+    use() {
+        gl.useProgram(this.id);
+    }
+
+>>>>>>> 5b3bad1861c7736917637ab94e9327beeca74754
     findUniformLocations () {
 
         this.uniforms = {};
@@ -70,7 +96,11 @@ export class Program {
 }
 
 var programs;
+<<<<<<< HEAD
 export default function programs() {
+=======
+export default function getPrograms() {
+>>>>>>> 5b3bad1861c7736917637ab94e9327beeca74754
 
     if (!programs) {
 
