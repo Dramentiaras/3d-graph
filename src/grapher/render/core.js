@@ -11,8 +11,6 @@ var viewHeight;
 
 var models = [];
 
-//TODO create VAO
-
 function updateViewport() {
     if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
 

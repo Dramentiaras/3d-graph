@@ -15,4 +15,3 @@ export class Shader {
         }
     }
 }
-//TODO implement shaders

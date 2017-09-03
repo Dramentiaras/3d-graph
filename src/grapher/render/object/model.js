@@ -9,7 +9,12 @@ export class Model {
         this.program = program;
         this.matrix = mat4.create();
 
+        this.vao = gl.createVertexArray();
+
         this.buffer = this.mesh.compileBuffer(gl);
+
+        gl.bindVertexArray(this.vao);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
     }
 
     render (renderInfo) {
