@@ -1,6 +1,6 @@
-import { Mesh } from './mesh';
-import { gl } from '../core';
-import { mat4 } from '../../../lib/glm';
+import { Mesh } from './mesh.js';
+import { gl } from '../core.js';
+import { mat4 } from '../../../lib/glm.js';
 
 export class Model {
 
@@ -9,24 +9,22 @@ export class Model {
         this.program = program;
         this.matrix = mat4.create();
 
-        this.vao = gl.createVertexArray();
-
         this.buffer = this.mesh.compileBuffer(gl);
-
-        gl.bindVertexArray(this.vao);
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
     }
 
     render (renderInfo) {
         this.program.use();
-        this.program.enableVAA();
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
-        this.program.setUniforms(renderInfo);
 
-        gl.drawElements(this.mesh.drawMode, this.mesh.positions.length / 3, this.gl.UNSIGNED_SHORT, 0);
+        gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 4*12, 0);
+        gl.vertexAttribPointer(1, 4, gl.FLOAT, false, 4*12, 4*3);
+        gl.vertexAttribPointer(2, 3, gl.FLOAT, false, 4*12, 4*7);
+        gl.vertexAttribPointer(3, 2, gl.FLOAT, false, 4*12, 4*10);
 
-        this.program.disableVAA();
-        this.program.disable();
+        this.program.setUniform('uViewMatrix', renderInfo.view);
+        this.program.setUniform('uModelMatrix', this.matrix);
+
+        gl.drawArrays(this.mesh.drawMode, 0, this.mesh.positions.length / 3);
     }
 }

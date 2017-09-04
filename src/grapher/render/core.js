@@ -46,7 +46,13 @@ export function init(canvasid) {
 
     currentCamera = new Camera();
 
-    addModel(new Axis());
+    gl.enableVertexAttribArray(0);
+    gl.enableVertexAttribArray(1);
+    gl.enableVertexAttribArray(2);
+    gl.enableVertexAttribArray(3);
+
+    var axis = new Axis();
+    addModel(axis);
     tick();
 }
 
